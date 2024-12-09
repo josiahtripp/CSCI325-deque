@@ -7,7 +7,7 @@ using namespace std;
 //#define DEBUG
 
 #ifdef DEBUG
-void deque::printDebugInfo(){
+void Deque::printDebugInfo(){
 
     cout << "\tcurrentSize = " << currentSize << endl;
     cout << "\tmapSize = " << mapSize << endl;
@@ -19,7 +19,7 @@ void deque::printDebugInfo(){
 }
 #endif
 
-void deque::allocateFrontBlock(){
+void Deque::allocateFrontBlock(){
 
     // There is room on the blockMap, just allocate and add a new block to the front
     if(firstBlock > 0){
@@ -40,7 +40,7 @@ void deque::allocateFrontBlock(){
     #endif
 }
 
-void deque::allocateBackBlock(){
+void Deque::allocateBackBlock(){
 
     // There is room on the blockMap, just allocate and add a new block to the back
     if(lastBlockIndex() + 1 < mapSize){
@@ -61,7 +61,7 @@ void deque::allocateBackBlock(){
     #endif
 }
 
-void deque::resizeBlockMap(){
+void Deque::resizeBlockMap(){
 
     // Allocate space for new blockmap with double the size of the current one
     int newMapSize = mapSize * 2;
@@ -98,17 +98,17 @@ void deque::resizeBlockMap(){
     #endif
 }
 
-int deque::lastBlockIndex(){
+unsigned int Deque::lastBlockIndex(){
 
     return ((firstElement + currentSize - 1) / blockSize) + firstBlock;
 }
 
-int deque::lastElementIndex(){
+unsigned int Deque::lastElementIndex(){
 
     return (firstElement + currentSize - 1) % blockSize;
 }
 
-deque::deque(){
+Deque::Deque(){
 
     // Initialize values
     currentSize = 0;
@@ -120,7 +120,7 @@ deque::deque(){
 
     // Allocate space for blockMap & first block
     blockMap = new int*[mapSize];
-    for(int i = 0; i < mapSize; i++){
+    for(unsigned int i = 0; i < mapSize; i++){
         blockMap[i] = nullptr;
     }
     blockMap[firstBlock] = new int[blockSize];
@@ -131,10 +131,10 @@ deque::deque(){
     #endif
 }
 
-deque::~deque(){
+Deque::~Deque(){
 
     // Delete blocks currently in use
-    for(int i = firstBlock; i < lastBlockIndex() + 1; i++){
+    for(unsigned int i = firstBlock; i < lastBlockIndex() + 1; i++){
         delete[] blockMap[i];
         blockMap[i] = nullptr;
         #ifdef debug
@@ -150,7 +150,7 @@ deque::~deque(){
     #endif
 }
 
-void deque::push_front(int element){
+void Deque::push_front(int element){
 
     // There is still room within the current block
     if(firstElement > 0){
@@ -176,7 +176,7 @@ void deque::push_front(int element){
     #endif
 }
 
-int deque::pop_front(){
+int Deque::pop_front(){
 
     // No elements to pop, return 0
     if(currentSize == 0){
@@ -209,7 +209,7 @@ int deque::pop_front(){
     return tmp;
 }
 
-void deque::push_back(int element){
+void Deque::push_back(int element){
 
     // There is still room within the current block
     if(lastElementIndex() + 1 < blockSize){
@@ -232,7 +232,7 @@ void deque::push_back(int element){
     #endif
 }
 
-int deque::pop_back(){
+int Deque::pop_back(){
 
     // No elements to pop, return 0
     if(currentSize == 0){
@@ -263,27 +263,27 @@ int deque::pop_back(){
     return tmp;
 }
 
-int deque::front(){
+int Deque::front(){
 
     return blockMap[firstBlock][firstElement];
 }
 
-int deque::back(){
+int Deque::back(){
 
     return blockMap[lastBlockIndex()][lastElementIndex()];
 }
 
-bool deque::empty(){
+bool Deque::empty(){
 
     return (currentSize > 0) ? false : true;
 }
 
-int deque::size(){
+unsigned long long Deque::size(){
 
     return currentSize;
 }
 
-int deque::operator[](int index){
+int Deque::operator[](unsigned long long index){
 
     return blockMap[((index + firstElement) / blockSize) + firstBlock][(index + firstElement) % blockSize];
 }

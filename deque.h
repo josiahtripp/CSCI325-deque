@@ -4,7 +4,16 @@
     class deque{
 
         private:
-            int blockmap;
+            int** blockMap;
+            int currentSize; // The current number of elements in the deque
+            int mapSize; // Entries in blockmap
+            const static int blockSize = 1024; // Size of each block (in elements)
+            int firstBlock; // The index of the first block
+            int firstElement; // The first index of the first block
+            void allocateFrontBlock();
+            void allocateBackBlock();
+            void resizeBlockMapFront();
+            void resizeBlockMapBack();
         public:
             deque();
             ~deque();

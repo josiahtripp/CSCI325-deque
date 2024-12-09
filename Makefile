@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -I .
 
  all:
 	$(CC) $(CFLAGS) -c main.cpp deque.cpp

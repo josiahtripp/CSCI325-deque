@@ -4,16 +4,18 @@
     class deque{
 
         private:
-            int** blockMap;
-            int currentSize; // The current number of elements in the deque
-            int mapSize; // Entries in blockmap
-            const static int blockSize = 1024; // Size of each block (in elements)
-            int firstBlock; // The index of the first block
+            int** blockMap; // The blockMap array containing pointers to our blocks
+            unsigned long long currentSize; // The current number of elements in the deque
+            unsigned long long mapSize; // Entries in blockmap
+            const static unsigned long long blockSize = 1024; // Size of each block (in elements)
+            const static unsigned long long defaultMapSize = 8; // Default number of blocks in blockMap
+            unsigned long long firstBlock; // The index of the first block
             int firstElement; // The first index of the first block
             void allocateFrontBlock();
             void allocateBackBlock();
-            void resizeBlockMapFront();
-            void resizeBlockMapBack();
+            void resizeBlockMap();
+            int lastBlockIndex();
+            int lastElementIndex();
         public:
             deque();
             ~deque();
@@ -25,6 +27,7 @@
             int back();
             bool empty();
             int size();
+            int operator[](int index);
     };
 
 #endif

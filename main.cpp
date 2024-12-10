@@ -1,12 +1,54 @@
+/**
+ * @file main.cpp
+ * @author Josiah Tripp
+ * @date 2024-12-09
+ * @brief This file contains a driver program fro the testing the Deque class in "deque.h"
+ * 
+ * 
+ */
+
 #include <deque.h>
 #include <iostream>
 
 using namespace std;
 
+/**
+ * Tests the push_back(), push_front() & size() method functionality of the Deque class
+ *
+ * @param unsigned int testElements The number of elements to push to the deque
+ * @param bool fullOutput Whether to output info on all test processes or just a few
+ * @param Deque& myDeque The Deque object to perform the tests on
+ * @pre 
+ * @return bool Whether the test has passed or not 
+ * @post The Deque object has had a number of elements push to it equivalent to the value of testElements & relevant info has been printed to stdout
+ * 
+ */
 bool testPush(unsigned int testElements, bool fullOutput, Deque& myDeque);
 
+/**
+ * Tests the operator[], front() & back() method functionality of the Deque class
+ *
+ * @param unsigned int testElements The number of elements to check for in the Deque
+ * @param bool fullOutput Whether to output info on all test processes or just a few
+ * @param Deque& myDeque The Deque object to perform the tests on
+ * @pre 
+ * @return bool Whether the test has passed or not
+ * @post The Deque object has been read through & relevant info has been printed to stdout
+ * 
+ */
 bool testValues(unsigned int testElements, bool fullOutput, Deque& myDeque);
 
+/**
+ * Tests the pop_back(), pop_front() & empty() method functionality of the Deque class
+ *
+ * @param unsigned int testElements The number of elements to pop from the Deque
+ * @param bool fullOutput Whether to output info on all test processes or just a few
+ * @param Deque& myDeque The Deque object to perform the tests on
+ * @pre 
+ * @return bool Whether the test has passed or not
+ * @post The Deque object has had all of its elements popped & relelvant info has been printed to stdout
+ * 
+ */
 bool testPop(unsigned int testElements, bool fullOutput, Deque& myDeque);
 
 int main(){

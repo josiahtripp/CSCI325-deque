@@ -1,11 +1,28 @@
+/**
+ * @file deque.cpp
+ * @author Josiah Tripp
+ * @date 2024-12-09
+ * @brief Defines the methods of the Deque class
+ * 
+ * 
+ */
+
 #include <deque.h>
 #include <iostream>
 
 using namespace std;
 
-/* Uncomment line to enable debugging info output program */
+/* Uncomment line to enable debugging info output */
 //#define DEBUG
 
+/**
+ * Prints member variable information. Used during debugging
+ *
+ * @pre 
+ * @return void 
+ * @post Member variable info has been printed to stdout
+ * 
+ */
 #ifdef DEBUG
 void Deque::printDebugInfo(){
 

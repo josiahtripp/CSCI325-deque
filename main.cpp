@@ -58,11 +58,12 @@ int main(){
 
     // Miscellaneous test variables
     char userInput;
+    unsigned int tmpInput;
     bool fullOutput = false; // Default to partial test output
-    const unsigned int testElements = 100000; // Default to 100,000 test elements (CHANGE THIS TO TEST OTHER AMOUNTS)
+    unsigned int testElements = 100000; // Default to 100,000 test elements
 
     // Get user selection
-    cout << "Welcome to the deque test program - Please enter 'p' for partial test output or 'f' for full test output: ";
+    cout << "Welcome to the deque test program\n\nPlease enter 'p' for partial test output or 'f' for full test output: ";
     cin >> userInput;
 
     // User input / selection confirmation
@@ -70,18 +71,32 @@ int main(){
 
         case 'p':
         case 'P':
-            cout << "Running tests with partial test output...\n\n";
+            cout << "- Running tests with partial test output...\n\n";
         break;
 
         case 'f':
         case 'F':
-            cout << "Running tests with full test output...\n\n";
+            cout << "- Running tests with full test output...\n\n";
             fullOutput = true;
         break;
 
         default:
-            cout << "Invalid input selection - Defaulting to running tests with partial test output...\n\n";
+            cout << "- Invalid input selection - Defaulting to running tests with partial test output...\n\n";
         break;
+    }
+
+    // Get user amount of elements
+    cout << "Please enter the number of test elements you'd like to run through the deque (enter 0 for default of ";
+    cout << testElements << " elements): ";
+    cin >> tmpInput;
+
+    if(tmpInput > 0){
+
+        testElements = tmpInput;
+        cout << "- Testing with " << testElements << " elements.\n\n";
+    }
+    else{
+        cout << "- Defaulting to testing with " << testElements << " elements.\n\n";
     }
 
     // Run tests
